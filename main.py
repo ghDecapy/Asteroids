@@ -2,6 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
 from constants import *
 from circleshape import *
 from player import *
@@ -28,6 +29,9 @@ def main():
             
         screen.fill("black")
         updatable.update(dt)
+        for asteroid in asteroids:
+            if asteroid.collide_check(player):
+                sys.exit("Game over!")
         for image in drawable:
             image.draw(screen)
         pygame.display.flip()
